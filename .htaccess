@@ -1,0 +1,13 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^(www\.)?tenpercent\top$ [NC]
+RewriteCond %{REQUEST_URI} !^/web/
+
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ web/$1
+# Otherwise forward it to index.php
+RewriteCond %{HTTP_HOST} ^(www\.)?tenpercent\.top$ [NC]
+RewriteRule ^(/)?$ web/index.php [L]
